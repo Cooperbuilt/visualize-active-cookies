@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cookie Cleaner - Chrome Extension</title>
+  <style>
+    body {
+      min-width: 420px;
+      min-height: 10%;
+      color: #172B4D;
+    }
+
+    .developer {
+      opacity: 0.8;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0
+    }
+
+    li {
+      text-align: center;
+      line-height: 2;
+      background: slategrey;
+    }
+
+    li:nth-of-type(odd) {
+      background: lightsteelblue;
+      overflow-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="CookieManager">
+    <h2 class="CookieManager-title">Cookie Manager</h2>
+  </div>
+  <ul class="CookieManager-cookieList"></ul>
+  <script src="background.js"></script>
+
+</body>
+
+</html>
