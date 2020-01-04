@@ -19,9 +19,10 @@ const returnAllCookies = (url, callback) => {
  */
 const createListItem = (cookie) => {
   return `
-  <li>
-    <p>Key Name: ${cookie.name}</p>
-    <p>Key Value: ${cookie.value}</p>
+  <li class="Card">
+    <p class="Card-title">${cookie.name}</p>
+    <p class="Card-text">${cookie.value}</p>
+    <div aria-role="divider" class="Card-divider" />
   </li>
   `
 }
@@ -42,9 +43,12 @@ function displayCookies() {
     lastFocusedWindow: true
   }, ([currentTab]) => {
     if (currentTab && currentTab.url && currentTab.url.includes('http') || currentTab.url.includes('https')) {
+      console.log('retrieve')
       chrome.cookies.getAll({ url: currentTab.url }, createCookieList);
+
     } else {
-      chrome.windows.onFocusChanged.addListener(displayCookies)
+      console.log('listener')
+      chrome.cookies.onChanged.addListener(displayCookies)
       return;
     }
   });
@@ -53,11 +57,8 @@ function displayCookies() {
 
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', afterDOMLoaded);
+  document.addEventListener('DOMContentLoaded', displayCookies);
 } else {
-  afterDOMLoaded();
-}
-
-function afterDOMLoaded() {
   displayCookies();
+  chrome.cookies.onChanged.addListener(displayCookies)
 }
