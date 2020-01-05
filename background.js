@@ -3,6 +3,16 @@
  * @email <evcooper@wayfair.com>
  */
 
+const updateUrlHTML = (url) => {
+  const currentUrlElement = document.querySelector(".CookieManager-currentUrl");
+  currentUrlElement.innerHTML = url;
+}
+
+const updateCookieCountHTML = (count) => {
+  const currentUrlElement = document.querySelector(".CookieManager-count");
+  currentUrlElement.innerHTML = count;
+}
+
 /**
  * @param {string} url - full url of site to gather cookies on
  * @returns {array} - returns an array of cookies
@@ -33,8 +43,13 @@ const generateCookieHtml = (cookies) => {
 
 const createCookieList = (cookies) => {
   const cookieList = document.querySelector('.CookieManager-cookieList');
+  updateCookieCountHTML(cookies.length)
   const cookieHTML = generateCookieHtml(cookies);
   cookieList.innerHTML = cookieHTML.join("");
+}
+
+const containsWebUrl = (tabInfo) => {
+  return (tabInfo && tabInfo.url && (tabInfo.url.includes('http') || tabInfo.url.includes('https')))
 }
 
 function displayCookies() {
@@ -42,18 +57,15 @@ function displayCookies() {
     active: true,
     lastFocusedWindow: true
   }, ([currentTab]) => {
-    if (currentTab && currentTab.url && currentTab.url.includes('http') || currentTab.url.includes('https')) {
-      console.log('retrieve')
+    if (containsWebUrl(currentTab)) {
+      updateUrlHTML(currentTab.url);
       chrome.cookies.getAll({ url: currentTab.url }, createCookieList);
-
     } else {
-      console.log('listener')
       chrome.cookies.onChanged.addListener(displayCookies)
       return;
     }
   });
 }
-
 
 
 if (document.readyState === 'loading') {

@@ -1,4 +1,4 @@
-function displayCookies() {
+function openCookieManager() {
   chrome.windows.create({
     url: chrome.runtime.getURL("cookie_window.html"),
     type: "popup",
@@ -35,6 +35,6 @@ function afterDOMLoaded() {
   });
 
   display_Cookies.addEventListener('click', function () {
-    displayCookies();
+    openCookieManager();
   });
 }
