@@ -59,7 +59,7 @@ function displayCookies() {
   }, ([currentTab]) => {
     if (containsWebUrl(currentTab)) {
       updateUrlHTML(currentTab.url);
-      chrome.cookies.getAll({ url: currentTab.url }, createCookieList);
+      chrome.cookies.getAll({}, createCookieList);
     } else {
       chrome.cookies.onChanged.addListener(displayCookies)
       return;
@@ -67,9 +67,37 @@ function displayCookies() {
   });
 }
 
+// TODO clean this up to be more functional
+function clearAllCookies() {
+  const cookieList = document.querySelector('.CookieManager-cookieList');
+  cookieList.innerHTML = "";
+  chrome.cookies.getAll({}, function (cookies) {
+    for (var i in cookies) {
+      removeCookie(cookies[i]);
+    }
+  });
+}
+
+function removeCookie(cookie) {
+  var url = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain +
+    cookie.path;
+  chrome.cookies.remove({ "url": url, "name": cookie.name });
+}
+
+function setButtonHandler() {
+  const button = document.querySelector(".CookieManager-button");
+  button.addEventListener('click', () => {
+    clearAllCookies()
+  });
+}
+
+function afterDOMload() {
+  setButtonHandler()
+  displayCookies()
+}
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', displayCookies);
+  document.addEventListener('DOMContentLoaded', afterDOMload);
 } else {
   displayCookies();
   chrome.cookies.onChanged.addListener(displayCookies)
