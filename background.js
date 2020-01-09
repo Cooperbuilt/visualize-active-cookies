@@ -59,7 +59,7 @@ function displayCookies() {
   }, ([currentTab]) => {
     if (containsWebUrl(currentTab)) {
       updateUrlHTML(currentTab.url);
-      chrome.cookies.getAll({}, createCookieList);
+      chrome.cookies.getAll({ url: currentTab.url }, createCookieList);
     } else {
       chrome.cookies.onChanged.addListener(displayCookies)
       return;
@@ -85,7 +85,7 @@ function removeCookie(cookie) {
 }
 
 function setButtonHandler() {
-  const button = document.querySelector(".CookieManager-button");
+  const button = document.querySelector(".Button");
   button.addEventListener('click', () => {
     clearAllCookies()
   });

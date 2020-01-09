@@ -9,15 +9,23 @@
       min-height: 10%;
       color: #172B4D;
       margin: 0;
-      background: #e3f6fd;
+      background: #EEF0FC;
     }
 
     .CookieManager-header {
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
       margin: 0;
       padding: 16px;
-      background-color: #337fb9;
+      background: #1e3c72;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #2a5298, #1e3c72);
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      border-bottom-right-radius: 35% 200%;
       color: #fff;
+      display: flex;
+      justify-content: space-between;
+      height: 5em;
     }
 
     .CookieManager-cookieList {
@@ -30,6 +38,7 @@
 
     .Card {
       padding: 4px 16px;
+      background-color: #fff;
     }
 
     .Card-title {
@@ -68,20 +77,17 @@
 
 <body class="CookieManager">
   <div class="CookieManager-header">
-    <h2 class="CookieManager-title">Cookie Manager</h2>
-    <button class="CookieManager-button" id="clear_cookies">
+    <div class="InfoWrapper">
+      <span class="Card-title">Current URL:</span>
+      <span class="CookieManager-currentUrl"></span>
+    </div>
+    <div class="InfoWrapper">
+      <span class="Card-title">Total Cookie Count:</span>
+      <span class="CookieManager-count"></span>
+    </div>
+    <button class="Button" id="clear_cookies">
       Clear All Cookies
     </button>
-    <div class="CookieManager-info">
-      <div class="InfoWrapper">
-        <span>Current URL:</span>
-        <span class="CookieManager-currentUrl"></span>
-      </div>
-      <div class="InfoWrapper">
-        <span>Total Cookie Count:</span>
-        <span class="CookieManager-count"></span>
-      </div>
-    </div>
   </div>
   <ul class="CookieManager-cookieList"></ul>
   <script src="background.js"></script>
