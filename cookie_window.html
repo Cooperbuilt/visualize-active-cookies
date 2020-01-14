@@ -3,95 +3,32 @@
 
 <head>
   <title>Cookie Cleaner - Chrome Extension</title>
-  <style>
-    .CookieManager {
-      min-width: 420px;
-      min-height: 10%;
-      color: #172B4D;
-      margin: 0;
-      background: #EEF0FC;
-    }
-
-    .CookieManager-header {
-      margin: 0;
-      padding: 16px;
-      background: #1e3c72;
-      /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
-      /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to right, #2a5298, #1e3c72);
-      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      border-bottom-right-radius: 35% 200%;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      height: 5em;
-    }
-
-    .CookieManager-cookieList {
-      list-style: none;
-      padding: 8px 0 16px 0;
-      background-color: #fff;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
-      margin: 16px;
-    }
-
-    .Card {
-      padding: 4px 16px;
-      background-color: #fff;
-    }
-
-    .Card-title {
-      font-family: Roboto, sans-serif;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
-      font-size: 1rem;
-      line-height: 2rem;
-      font-weight: 500;
-      letter-spacing: .0125em;
-      margin: 0 0 8px 0;
-    }
-
-    .Card-text {
-      overflow-wrap: break-word;
-      font-family: Roboto, sans-serif;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
-      font-size: .875rem;
-      line-height: 1.25rem;
-      font-weight: 400;
-      letter-spacing: .0178571429em;
-      opacity: .6;
-      margin: 0 0 16px 0;
-    }
-
-    .Card-divider {
-      display: block;
-      margin: 0;
-      border-top-width: 1px;
-      border-top-style: solid;
-      border-top-color: rgba(0, 0, 0, .12);
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body class="CookieManager">
+  <!-- BEGIN HEADER -->
   <div class="CookieManager-header">
-    <div class="InfoWrapper">
-      <span class="Card-title">Current URL:</span>
-      <span class="CookieManager-currentUrl"></span>
-    </div>
-    <div class="InfoWrapper">
-      <span class="Card-title">Total Cookie Count:</span>
-      <span class="CookieManager-count"></span>
-    </div>
-    <button class="Button" id="clear_cookies">
-      Clear All Cookies
-    </button>
+
   </div>
+  <!-- END HEADER -->
   <ul class="CookieManager-cookieList"></ul>
   <script src="background.js"></script>
 
 </body>
 
 </html>
+
+
+
+<!-- <div class="InfoWrapper">
+  <span class="Card-title">Current URL:</span>
+  <span class="CookieManager-currentUrl"></span>
+</div>
+<div class="InfoWrapper">
+  <span class="Card-title">Total Cookie Count:</span>
+  <span class="CookieManager-count"></span>
+</div>
+<button class="Button" id="clear_cookies">
+  Clear All Cookies
+</button> -->

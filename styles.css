@@ -1,0 +1,74 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+.CookieManager {
+  min-width: 420px;
+  min-height: 100%;
+  color: #172B4D;
+  margin: 0;
+  background: #EEF0FC;
+}
+
+.CookieManager-header {
+  margin: 0;
+  padding: 16px;
+  background: #000046;
+  background: -webkit-linear-gradient(to right, #003661, #000046);
+  background: linear-gradient(to right, #003661, #000046);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 5em;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+.CookieManager-cookieList {
+  list-style: none;
+  padding: 8px 0 16px 0;
+  background-color: #fff;
+  height: 100%;
+  border-top-left-radius: 50% 20%;
+  border-top-right-radius: 50% 20%;
+}
+
+.Card {
+  padding: 4px 16px;
+  background-color: #fff;
+}
+
+.Card-title {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: 500;
+  letter-spacing: .0125em;
+  margin: 0 0 8px 0;
+}
+
+.Card-text {
+  overflow-wrap: break-word;
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  letter-spacing: .0178571429em;
+  opacity: .6;
+  margin: 0 0 16px 0;
+}
+
+.Card-divider {
+  display: block;
+  margin: 0;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgba(0, 0, 0, .12);
+}
