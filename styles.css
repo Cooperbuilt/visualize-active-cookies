@@ -6,8 +6,7 @@ body {
 }
 
 .CookieManager {
-  min-width: 420px;
-  min-height: 100%;
+  height: 100%;
   color: #172B4D;
   margin: 0;
   background: #EEF0FC;
@@ -21,23 +20,46 @@ body {
   background: linear-gradient(to right, #003661, #000046);
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 5em;
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.CookieManager-buttonText {
+  color: #9CFFFF;
+  cursor: pointer;
+  font-size: 1.25em;
+  transition: color .25s ease-in-out;
+}
+
+.is-Active {
+  background-image: linear-gradient(120deg, #9CFFFF 0%, #69D1F8 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+}
+
+.CookieManager-buttonText:hover {
+  color: #69D1F8;
 }
 
 .CookieManager-cookieList {
   list-style: none;
-  padding: 8px 0 16px 0;
   background-color: #fff;
-  height: 100%;
-  border-top-left-radius: 50% 20%;
-  border-top-right-radius: 50% 20%;
+  min-height: 100%;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top-left-radius: 75px 20px;
+  border-top-right-radius: 75px 20px;
+  padding-inline-start: 0;
+  margin-block-end: 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .Card {
-  padding: 4px 16px;
+  padding: 4px 32px;
   background-color: #fff;
 }
 

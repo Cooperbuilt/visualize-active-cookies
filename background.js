@@ -3,10 +3,55 @@
  * @email <evcooper@wayfair.com>
  */
 
-const updateUrlHTML = (url) => {
-  const currentUrlElement = document.querySelector(".CookieManager-currentUrl");
-  currentUrlElement.innerHTML = url;
+// Store System for funsies
+const createStore = (reducer, initialState) => {
+  const store = {};
+  store.state = initialState;
+  store.listeners = [];
+
+  store.getState = () => store.state;
+
+  store.subscribe = listener => {
+    store.listeners.push(listener);
+  };
+
+  store.dispatch = action => {
+    store.state = reducer(store.state, action);
+    store.listeners.forEach(listener => listener());
+  };
+
+  return store;
+};
+
+const getInitialState = () => {
+  return {
+    firstPartyOnly: true
+  }
 }
+
+const reducer = (state = getInitialState(), { type, payload }) => {
+  switch (type) {
+    case 'FIRST_PARTY':
+      return {
+        ...state,
+        firstPartyOnly: true
+      }
+    case 'ALL_COOKIES':
+      return {
+        ...state,
+        firstPartyOnly: false
+      }
+    case 'UPDATE_TAB':
+      return {
+        ...state,
+        activeTab: payload
+      }
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
 
 const updateCookieCountHTML = (count) => {
   const currentUrlElement = document.querySelector(".CookieManager-count");
@@ -18,7 +63,7 @@ const updateCookieCountHTML = (count) => {
  * @returns {array} - returns an array of cookies
  */
 const returnAllCookies = (url, callback) => {
-  return chrome.cookies.getAll({ url: currentTab.url }, callback);
+  return chrome.cookies.getAll({ url: url }, callback);
 }
 
 /**
@@ -43,7 +88,6 @@ const generateCookieHtml = (cookies) => {
 
 const createCookieList = (cookies) => {
   const cookieList = document.querySelector('.CookieManager-cookieList');
-  updateCookieCountHTML(cookies.length)
   const cookieHTML = generateCookieHtml(cookies);
   cookieList.innerHTML = cookieHTML.join("");
 }
@@ -52,16 +96,21 @@ const containsWebUrl = (tabInfo) => {
   return (tabInfo && tabInfo.url && (tabInfo.url.includes('http') || tabInfo.url.includes('https')))
 }
 
+store.subscribe(() => {
+  displayCookies()
+});
+
 function displayCookies() {
+  const { firstPartyOnly } = store.getState();
   chrome.tabs.query({
     active: true,
     lastFocusedWindow: true
   }, ([currentTab]) => {
     if (containsWebUrl(currentTab)) {
-      updateUrlHTML(currentTab.url);
-      chrome.cookies.getAll({ url: currentTab.url }, createCookieList);
+      returnAllCookies(firstPartyOnly ? currentTab.url : null, createCookieList)
     } else {
       chrome.cookies.onChanged.addListener(displayCookies)
+      createCookieList([])
       return;
     }
   });
@@ -84,18 +133,35 @@ function removeCookie(cookie) {
   chrome.cookies.remove({ "url": url, "name": cookie.name });
 }
 
-function setButtonHandler() {
-  const button = document.querySelector(".Button");
-  button.addEventListener('click', () => {
-    clearAllCookies()
-  });
+function setButtonHandlers() {
+  // const button = document.querySelector(".Button");
+  // button.addEventListener('click', () => {
+  //   clearAllCookies()
+  // });
+  const firstPartyCookiesBtn = document.getElementById("1stParty")
+  const allCookiesBtn = document.getElementById("AllCookies")
+
+  firstPartyCookiesBtn.addEventListener('click', () => {
+    firstPartyCookiesBtn.classList.add("is-Active");
+    allCookiesBtn.classList.remove("is-Active");
+    store.dispatch({
+      type: 'FIRST_PARTY'
+    })
+  })
+  allCookiesBtn.addEventListener('click', () => {
+    allCookiesBtn.classList.add("is-Active");
+    firstPartyCookiesBtn.classList.remove("is-Active");
+    store.dispatch({
+      type: 'ALL_COOKIES'
+    })
+  })
 }
 
 function afterDOMload() {
-  setButtonHandler()
+  setButtonHandlers()
   displayCookies()
 }
-
+store.dispatch({});
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', afterDOMload);
 } else {
