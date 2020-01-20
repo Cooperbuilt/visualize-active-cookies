@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Live Cookies - Chrome Extension</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
 
-<head>
-  <title>Live Cookies - Chrome Extension</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-
-<body class="CookieManager">
-  <!-- BEGIN HEADER -->
-  <div class="CookieManager-header">
-    <p id="1stParty" class="CookieManager-buttonText is-Active">1st party cookies</p>
-    <p id="AllCookies" class="CookieManager-buttonText">1st and 3rd party</p>
-  </div>
-  <!-- END HEADER -->
-  <ul class="CookieManager-cookieList"></ul>
-  <script src="background.js"></script>
-
-</body>
-
+  <body class="CookieManager">
+    <!-- BEGIN HEADER -->
+    <div class="CookieManager-header">
+      <p id="1stParty" class="CookieManager-buttonText is-Active">
+        1st party cookies
+      </p>
+      <p id="AllCookies" class="CookieManager-buttonText">1st and 3rd party</p>
+    </div>
+    <!-- END HEADER -->
+    <div class="CookieManager-ButtonWrapper">
+      <button id="ClearCookies" class="CookieManager-Button">
+        Clear All Cookies
+      </button>
+      <button id="CopyCookies" class="CookieManager-Button">
+        <span class="CookieManager-Button-Text">Copy All Cookies</span>
+        <span class="CookieManager-Check"></span>
+      </button>
+    </div>
+    <ul class="CookieManager-cookieList"></ul>
+    <script src="background.js"></script>
+  </body>
 </html>
-
-
-
-<!-- <div class="InfoWrapper">
-  <span class="Card-title">Current URL:</span>
-  <span class="CookieManager-currentUrl"></span>
-</div>
-<div class="InfoWrapper">
-  <span class="Card-title">Total Cookie Count:</span>
-  <span class="CookieManager-count"></span>
-</div>
-<button class="Button" id="clear_cookies">
-  Clear All Cookies
-</button> -->
