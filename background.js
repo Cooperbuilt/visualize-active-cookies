@@ -83,7 +83,12 @@ const createListItem = cookie => {
 };
 
 const generateCookieHtml = cookies => {
-  return cookies.map(createListItem);
+  return cookies.sort((a, b) => {
+    if (a.name < b.name) { return -1 }
+    else {
+      return 1
+    }
+  }).map(createListItem);
 };
 
 const createCookieList = cookies => {
@@ -100,37 +105,67 @@ const containsWebUrl = tabInfo => {
   );
 };
 
-store.subscribe(() => {
-  displayCookies();
-});
-
 function displayCookies() {
   const { firstPartyOnly } = store.getState();
-  chrome.tabs.query(
-    {
-      active: true,
-      lastFocusedWindow: true
-    },
-    ([currentTab]) => {
-      if (containsWebUrl(currentTab)) {
-        returnAllCookies(
-          firstPartyOnly ? currentTab.url : null,
-          createCookieList
-        );
-        store.dispatch({ type: "UPDATE_TAB_URL", payload: currentTab.url });
-      } else {
-        chrome.cookies.onChanged.addListener(displayCookies);
-        return;
+  if (firstPartyOnly) {
+    chrome.tabs.query(
+      {
+        active: true,
+        lastFocusedWindow: true
+      },
+      ([currentTab]) => {
+        if (containsWebUrl(currentTab)) {
+          console.log(currentTab)
+          returnAllCookies(
+            firstPartyOnly ? currentTab.url : null,
+            createCookieList
+          );
+          store.dispatch({ type: "UPDATE_TAB_URL", payload: currentTab.url });
+        } else {
+          chrome.cookies.onChanged.addListener(displayCookies);
+          return;
+        }
       }
-    }
-  );
+    );
+  } else {
+    chrome.tabs.executeScript(82, {
+      code: 'console.log("hey")',
+    }, data => {
+      console.log(data)
+      if (chrome.runtime.lastError || !data || !data[0]) return;
+      const urls = data[0].map(url => url.split(/[#?]/)[0]);
+      const uniqueUrls = [...new Set(urls).values()].filter(Boolean);
+      Promise.all(
+        uniqueUrls.map(url =>
+          new Promise(resolve => {
+            chrome.cookies.getAll({ url }, resolve);
+          })
+        )
+      ).then(results => {
+        // convert the array of arrays into a deduplicated flat array of cookies
+        const cookies = [
+          ...new Map(
+            [].concat(...results)
+              .map(c => [JSON.stringify(c), c])
+          ).values()
+        ];
+        // do something with the cookies here
+        console.log(uniqueUrls, cookies);
+      });
+    });
+  }
 }
+
+// performance.getEntriesByType("resource").map(e => e.name)
+
+
+
 
 // TODO clean this up to be more functional
 function clearAllCookies() {
   const cookieList = document.querySelector(".CookieManager-cookieList");
   cookieList.innerHTML = "";
-  chrome.cookies.getAll({}, function(cookies) {
+  chrome.cookies.getAll({}, function (cookies) {
     for (var i in cookies) {
       removeCookie(cookies[i]);
     }
@@ -162,14 +197,14 @@ function copyCookies() {
   navigator.permissions.query({ name: "clipboard-write" }).then(result => {
     if (result.state == "granted" || result.state == "prompt") {
       navigator.clipboard.writeText(JSON.stringify(cookieObject)).then(
-        function() {
+        function () {
           const checkMark = document.querySelector(
             ".CookieManager-Check"
           );
           fadeElement(checkMark)
           /* clipboard successfully set */
         },
-        function() {}
+        function () { }
       );
     }
   });
@@ -194,7 +229,8 @@ function setButtonHandlers() {
       type: "FIRST_PARTY"
     });
     const { activeTabURL } = store.getState();
-    returnAllCookies(activeTabURL, createCookieList);
+    // returnAllCookies(activeTabURL, createCookieList);
+    displayCookies()
   });
   allCookiesBtn.addEventListener("click", () => {
     allCookiesBtn.classList.add("is-Active");
@@ -202,7 +238,8 @@ function setButtonHandlers() {
     store.dispatch({
       type: "ALL_COOKIES"
     });
-    returnAllCookies(null, createCookieList);
+    // returnAllCookies(null, createCookieList);
+    displayCookies()
   });
 
   clearCookiesButton.addEventListener("click", clearAllCookies);

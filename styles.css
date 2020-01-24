@@ -39,7 +39,7 @@ body {
 }
 
 .CookieManager-Button:hover {
-  box-shadow: 0 0px 3px rgba(0,0,0,0.09), 0 0px 3px rgba(0,0,0,0.09);
+  box-shadow: 0 0 3px rgba(0,0,0,0.09), 0 0 3px rgba(0,0,0,0.09);
 }
 
 .CookieManager-Check {
@@ -108,6 +108,7 @@ body {
   font-weight: 500;
   letter-spacing: .0125em;
   margin: 0 0 8px 0;
+  overflow-wrap: break-word;
 }
 
 .Card-text {
@@ -132,7 +133,7 @@ body {
 }
 
 
-/** UTILITIES **/ 
+/** UTILITIES **/
 .is-Active {
   background-image: linear-gradient(120deg, #9CFFFF 0%, #69D1F8 100%);
   background-repeat: no-repeat;
