@@ -3,6 +3,7 @@ html {
 }
 body {
   min-height: 100%;
+  font-family: Roboto, sans-serif;
 }
 
 .CookieManager {
@@ -99,7 +100,11 @@ body {
   background-color: #fff;
 }
 
-.Card-title {
+.Card-propertyWrapper {
+  display: flex;
+}
+
+.Card-cookieName {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -111,7 +116,7 @@ body {
   overflow-wrap: break-word;
 }
 
-.Card-text {
+.Card-cookieValue {
   overflow-wrap: break-word;
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
@@ -121,7 +126,7 @@ body {
   font-weight: 400;
   letter-spacing: .0178571429em;
   opacity: .6;
-  margin: 0 0 16px 0;
+  margin: 0;
 }
 
 .Card-divider {

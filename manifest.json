@@ -9,8 +9,8 @@
     "tabs",
     "http://*/*",
     "https://*/*",
-    "nativeMessaging",
-    "activeTab"
+    "activeTab",
+    "webRequest"
   ],
   "icons": {
     "16": "icon.png",
