@@ -4,6 +4,7 @@ html {
 body {
   min-height: 100%;
   font-family: Roboto, sans-serif;
+  color: #003661;
 }
 
 .CookieManager {
@@ -136,6 +137,23 @@ body {
   border-top-style: solid;
   border-top-color: rgba(0, 0, 0, .12);
 }
+
+.Trashcan {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  fill: #003661;
+}
+.Trashcan .Trashcan-open {
+  display: none;
+}
+.Trashcan:hover .Trashcan-open {
+  display: inline;
+}
+.Trashcan:hover .Trashcan-closed {
+  display: none;
+}
+
 
 
 /** UTILITIES **/
