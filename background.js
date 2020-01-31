@@ -56,7 +56,6 @@ const store = createStore(reducer);
 
 store.dispatch({});
 
-
 /** **************** CSS/HTML MANIPULATION ************************ */
 function fadeOut(el) {
   el.style.opacity = 0;
@@ -68,7 +67,7 @@ function fadeIn(el) {
 function fadeElement(element) {
   fadeIn(element);
   setInterval(() => {
-    fadeOut(element)
+    fadeOut(element);
   }, 3000);
 }
 
@@ -76,7 +75,6 @@ const updateCookieCountHTML = count => {
   const currentUrlElement = document.querySelector(".CookieManager-count");
   currentUrlElement.innerHTML = count;
 };
-
 
 /**
  *
@@ -86,9 +84,8 @@ const updateCookieCountHTML = count => {
  */
 const createListItem = cookie => {
   const dateObj = new Date(cookie.expirationDate * 1000);
-  const date = dateObj.toLocaleString().split(',')[0]
-  var url =
-    "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
+  const date = dateObj.toLocaleString().split(",")[0];
+  var url = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
   return `
     <tr class="CookieManager-table-row">
       <td data-id-name >${cookie.name}</td>
@@ -96,104 +93,78 @@ const createListItem = cookie => {
       <td data-id-domain>${cookie.domain}</td>
       <td data-id-date>${date}</td>
       <td class="hidden" data-id-url>${url}</td>
-      <td data-id-delete>
-      <svg
-        class="Trashcan"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 25 24.8"
-        style="enable-background:new 0 0 25 24.8;"
-        xml:space="preserve"
-        class="icon-Trashcan ct-delete"
-        data-ember-action=""
-        data-ember-action-1015="1015"
-      >
-        <g class="Trashcan-open">
-          <path
-            d="M18.7,24.4H5.9L4.9,7h14.9L18.7,24.4z M7.6,22.6H17l0.8-13.7h-11L7.6,22.6z"
-          ></path>
-          <polygon
-            points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "
-          ></polygon>
-          <polygon
-            points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "
-          ></polygon>
-          <path
-            d="M19.1,0.7l-4.7,0.9l-0.8-1.4L8.2,1.3L8,3l-4.7,1l0.2,4.7l17.3-3.5L19.1,0.7z
+      <td data-id-delete class=CookieManager-table-delete">
+        <svg
+          class="Trashcan"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 25 24.8"
+          style="enable-background:new 0 0 25 24.8;"
+          xml:space="preserve"
+          class="icon-Trashcan ct-delete"
+          data-ember-action=""
+          data-ember-action-1015="1015"
+        >
+          <g class="Trashcan-open">
+            <path
+              d="M18.7,24.4H5.9L4.9,7h14.9L18.7,24.4z M7.6,22.6H17l0.8-13.7h-11L7.6,22.6z"
+            ></path>
+            <polygon
+              points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "
+            ></polygon>
+            <polygon
+              points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "
+            ></polygon>
+            <path
+              d="M19.1,0.7l-4.7,0.9l-0.8-1.4L8.2,1.3L8,3l-4.7,1l0.2,4.7l17.3-3.5L19.1,0.7z
 
-          M8.8,1.9l4.4 -1.0 l0.5,0.8
-          L8.7,2.8z
+            M8.8,1.9l4.4 -1.0 l0.5,0.8
+            L8.7,2.8z
 
-          M5.2,6.4l0-1L18,2.8l0.3,0.9L5.2,6.4z"
-          ></path>
-        </g>
-        <g class="Trashcan-closed">
-          <path
-            d="M6.8,8.8h11L17,22.6
-          H7.6L6.8,8.8z
-          M4.9,7l1,17.4h12.8
-          l1-17.4
-          H4.9z"
-          ></path>
-          <polygon
-            points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "
-          ></polygon>
-          <polygon
-            points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "
-          ></polygon>
-          <path
-            d="M20.4,4h-4.8l-0.5-1.6
-          H9.5L9,4
-          H4.2
-          L3.5,8.6h17.6
-          L20.4,4z
+            M5.2,6.4l0-1L18,2.8l0.3,0.9L5.2,6.4z"
+            ></path>
+          </g>
+          <g class="Trashcan-closed">
+            <path
+              d="M6.8,8.8h11L17,22.6
+            H7.6L6.8,8.8z
+            M4.9,7l1,17.4h12.8
+            l1-17.4
+            H4.9z"
+            ></path>
+            <polygon
+              points="13.6,10.3 13.1,21.2 14.9,21.2 15.4,10.3 "
+            ></polygon>
+            <polygon
+              points="11.5,21.2 11,10.3 9.2,10.3 9.7,21.2 "
+            ></polygon>
+            <path
+              d="M20.4,4h-4.8l-0.5-1.6
+            H9.5L9,4
+            H4.2
+            L3.5,8.6h17.6
+            L20.4,4z
 
-          M9.9,3.2h4.8
-          L14.9,3.9h-5.2z
+            M9.9,3.2h4.8
+            L14.9,3.9h-5.2z
 
-          M5.6,6.7l0.2-1 h13l0.2,1
-          H5.6z"
-          ></path>
-        </g>
-      </svg>
-    </td>
-    </tr>
-    `
-  //   return `
-  //   <li class="Card">
-  //   <div class="Card-topWrapper">
-
-  //     <div class="Card-titleBlock">
-  //       <p class="Card-cookieName" data-id-name >${cookie.name}</p>
-  //       <p class="Card-cookieValue" data-id-value >${cookie.value}</p>
-  //     </div>
-  //   </div>
-  //   <div aria-role="divider" class="Card-divider" />
-  //   <div class="Card-propertiesGrid">
-  //     <div>
-  //       <p>domain</p>
-  //       <p class="Card-property" data-id-domain>${cookie.domain}</p>
-  //     </div>
-  //      <div >
-  //       <p>expiration</p>
-  //       <p class="Card-property" data-id-date>${date}</p>
-  //     </div>
-  //      <div>
-  //       <p>url</p>
-  //       <p class="Card-property" data-id-url>${url}</p>
-  //     </div>
-  //  </div>
-  // </li>
-  //   `;
+            M5.6,6.7l0.2-1 h13l0.2,1
+            H5.6z"
+            ></path>
+          </g>
+        </svg>
+      </td>
+  </tr>
+  `;
 };
 
 const createCookieList = cookies => {
   const cookieList = document.querySelector(".CookieManager-cookieList");
   const cookieHTML = generateCookieHtml(cookies);
   cookieList.innerHTML = cookieHTML.join("");
-  setCookieRemovalHandlers()
+  setCookieRemovalHandlers();
 };
 
 /** **************** UTILITIES ************************ */
@@ -206,12 +177,15 @@ const returnAllCookies = (url, callback) => {
 };
 
 const generateCookieHtml = cookies => {
-  return cookies.sort((a, b) => {
-    if (a.name < b.name) { return -1 }
-    else {
-      return 1
-    }
-  }).map(createListItem);
+  return cookies
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else {
+        return 1;
+      }
+    })
+    .map(createListItem);
 };
 
 const containsWebUrl = tabInfo => {
@@ -231,7 +205,7 @@ function removeCookie(cookie) {
 function clearAllCookies() {
   const cookieList = document.querySelector(".CookieManager-cookieList");
   cookieList.innerHTML = "";
-  chrome.cookies.getAll({}, function (cookies) {
+  chrome.cookies.getAll({}, function(cookies) {
     for (var i in cookies) {
       removeCookie(cookies[i]);
     }
@@ -241,11 +215,15 @@ function clearAllCookies() {
 /** **************** COOKIE COPYING FUNCTIONS ************************ */
 
 function copyCookies() {
-  const cookies = Array.from(document.querySelectorAll(".CookieManager-table-row"));
+  const cookies = Array.from(
+    document.querySelectorAll(".CookieManager-table-row")
+  );
   const cookieObject = cookies.reduce((newObject, currentCookie) => {
     const cookieName = currentCookie.querySelector("[data-id-name]").innerHTML;
-    const cookieValue = currentCookie.querySelector("[data-id-value]").innerHTML;
-    const cookieDomain = currentCookie.querySelector("[data-id-domain]").innerHTML;
+    const cookieValue = currentCookie.querySelector("[data-id-value]")
+      .innerHTML;
+    const cookieDomain = currentCookie.querySelector("[data-id-domain]")
+      .innerHTML;
     const cookieDate = currentCookie.querySelector("[data-id-date]").innerHTML;
     const cookieurl = currentCookie.querySelector("[data-id-url]").innerHTML;
 
@@ -253,39 +231,37 @@ function copyCookies() {
       value: cookieValue,
       domain: cookieDomain,
       expires: cookieDate,
-      same_site: cookieurl
-    }
+      full_url: cookieurl
+    };
     return newObject;
   }, {});
   navigator.permissions.query({ name: "clipboard-write" }).then(result => {
     if (result.state == "granted" || result.state == "prompt") {
       navigator.clipboard.writeText(JSON.stringify(cookieObject)).then(
-        function () {
-          const checkMark = document.querySelector(
-            ".CookieManager-Check"
-          );
-          fadeElement(checkMark)
+        function() {
+          const checkMark = document.querySelector(".CookieManager-Check");
+          fadeElement(checkMark);
           /* clipboard successfully set */
         },
-        function () { }
+        function() {}
       );
     }
   });
 }
 
 function setCookieRemovalHandlers() {
-  const cards = Array.from(document.querySelectorAll(".Card"));
+  const rows = Array.from(document.querySelectorAll(".CookieManager-table-row"));
 
-  cards.forEach(card => {
-    const icon = card.querySelector("[data-id-delete]");
-    const cookieName = card.querySelector("[data-id-name]").innerHTML;
-    const cookieURL = card.querySelector("[data-id-url]").innerHTML;
+  rows.forEach(row => {
+    const icon = row.querySelector("[data-id-delete]");
+    const cookieName = row.querySelector("[data-id-name]").innerHTML;
+    const cookieURL = row.querySelector("[data-id-url]").innerHTML;
 
     icon.addEventListener("click", () => {
       removeCookie({ url: cookieURL, name: cookieName });
-      returnCookies()
-    })
-  })
+      returnCookies();
+    });
+  });
 }
 
 function setButtonHandlers() {
@@ -300,8 +276,8 @@ function setButtonHandlers() {
     store.dispatch({
       type: "FIRST_PARTY"
     });
-    updateActiveTab()
-    returnCookies()
+    updateActiveTab();
+    returnCookies();
   });
 
   allCookiesBtn.addEventListener("click", () => {
@@ -310,8 +286,8 @@ function setButtonHandlers() {
     store.dispatch({
       type: "ALL_COOKIES"
     });
-    updateActiveTab()
-    returnCookies()
+    updateActiveTab();
+    returnCookies();
   });
 
   clearCookiesButton.addEventListener("click", clearAllCookies);
@@ -319,39 +295,40 @@ function setButtonHandlers() {
 }
 
 function returnCookies() {
-  const { url, id, firstPartyOnly } = store.getState()
+  const { url, id, firstPartyOnly } = store.getState();
   // if first party, use active tab to get all cookies
   if (firstPartyOnly) {
-    returnAllCookies(
-      url,
-      createCookieList
-    );
+    returnAllCookies(url, createCookieList);
   } else {
     // If not first party, iterate through all requests and use their urls
     // to get all cookies. Flatten, and create a cookie list from those
-    chrome.tabs.executeScript(id, {
-      code: 'performance.getEntriesByType("resource").map(e => e.name)',
-    }, data => {
-      if (chrome.runtime.lastError || !data || !data[0]) return;
-      const urls = data[0].map(url => url.split(/[#?]/)[0]);
-      const uniqueUrls = [...new Set(urls).values()].filter(Boolean);
-      Promise.all(
-        uniqueUrls.map(url =>
-          new Promise(resolve => {
-            chrome.cookies.getAll({ url }, resolve);
-          })
-        )
-      ).then(results => {
-        // convert the array of arrays into a deduplicated flat array of cookies
-        const cookies = [
-          ...new Map(
-            [].concat(...results)
-              .map(c => [JSON.stringify(c), c])
-          ).values()
-        ];
-        createCookieList(cookies)
-      });
-    });
+    chrome.tabs.executeScript(
+      id,
+      {
+        code: 'performance.getEntriesByType("resource").map(e => e.name)'
+      },
+      data => {
+        if (chrome.runtime.lastError || !data || !data[0]) return;
+        const urls = data[0].map(url => url.split(/[#?]/)[0]);
+        const uniqueUrls = [...new Set(urls).values()].filter(Boolean);
+        Promise.all(
+          uniqueUrls.map(
+            url =>
+              new Promise(resolve => {
+                chrome.cookies.getAll({ url }, resolve);
+              })
+          )
+        ).then(results => {
+          // convert the array of arrays into a deduplicated flat array of cookies
+          const cookies = [
+            ...new Map(
+              [].concat(...results).map(c => [JSON.stringify(c), c])
+            ).values()
+          ];
+          createCookieList(cookies);
+        });
+      }
+    );
   }
 }
 
@@ -364,16 +341,18 @@ function updateActiveTab() {
     },
     ([currentTab]) => {
       if (containsWebUrl(currentTab)) {
-        store.dispatch({ type: "UPDATE_TAB", payload: { url: currentTab.url, id: currentTab.id } });
-        returnCookies()
+        store.dispatch({
+          type: "UPDATE_TAB",
+          payload: { url: currentTab.url, id: currentTab.id }
+        });
+        returnCookies();
       } else {
         chrome.cookies.onChanged.addListener(updateActiveTab);
         return;
       }
-    });
+    }
+  );
 }
-
-
 
 function afterDOMload() {
   setButtonHandlers();
@@ -387,5 +366,3 @@ if (document.readyState === "loading") {
   updateActiveTab();
   chrome.cookies.onChanged.addListener(updateActiveTab);
 }
-
-

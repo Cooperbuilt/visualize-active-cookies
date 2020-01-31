@@ -7,14 +7,14 @@ body {
   color: #003661;
 }
 
-.CookieManager {
+.LiveCookies {
   height: 100%;
   color: #172B4D;
   margin: 0;
   background: #EEF0FC;
 }
 
-.CookieManager-header {
+.LiveCookies-header {
   margin: 0;
   padding: 16px 32px;
   background: #000046;
@@ -22,14 +22,14 @@ body {
   background: linear-gradient(to right, #003661, #000046);
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 5em;
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.CookieManager-Button {
+.LiveCookies-Button {
   padding: 40px 12px;
   border-radius: 5%;
   border: none;
@@ -40,11 +40,11 @@ body {
   position: relative;
 }
 
-.CookieManager-Button:hover {
+.LiveCookies-Button:hover {
   box-shadow: 0 0 3px rgba(0,0,0,0.09), 0 0 3px rgba(0,0,0,0.09);
 }
 
-.CookieManager-Check {
+.LiveCookies-Check {
   content: '';
   display: block;
   position: absolute;
@@ -62,28 +62,28 @@ body {
   transition: opacity .3s ease-in-out;
 }
 
-.CookieManager-Button-Text {
+.LiveCookies-Button-Text {
   transition: opacity .1s ease-in-out;
 }
 
-.CookieManager-ButtonWrapper {
+.LiveCookies-ButtonWrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 32px;
 }
 
-.CookieManager-buttonText {
+.LiveCookies-buttonText {
   color: #9CFFFF;
   cursor: pointer;
   font-size: 1.25em;
   transition: color .25s ease-in-out;
 }
 
-.CookieManager-buttonText:hover {
+.LiveCookies-buttonText:hover {
   color: #69D1F8;
 }
 
-.CookieManager-cookieList {
+.LiveCookies-cookieList {
   list-style: none;
   min-height: 100%;
   margin: 32px;
@@ -95,92 +95,7 @@ body {
 
 }
 
-/* .Card {
-  padding: 16px 16px 8px;
-  background-color: #fff;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
-  border-radius: 8px;
-}
 
-
-.Card-propertyWrapper {
-overflow-wrap: break-word;
-  font-family: Roboto, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  letter-spacing: .0178571429em;
-  opacity: .8;
-  margin: 0;
-}
-
-.Card-cookieName {
-  font-family: Roboto, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: 1rem;
-  line-height: 2rem;
-  font-weight: 500;
-  letter-spacing: .0125em;
-  margin: 0 0 8px 0;
-  overflow-wrap: break-word;
-}
-
-.Card-cookieValue {
-  overflow-wrap: break-word;
-  font-family: Roboto, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: .875rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  letter-spacing: .0178571429em;
-  opacity: .6;
-  margin: 0;
-}
-
-.Card-divider {
-  display: block;
-  margin: 16px 0;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: rgba(0, 0, 0, .12);
-}
-
-.Card-topWrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.Card-iconWrapper {
-  margin-right: 24px;
-}
-
-
-
-.Card-propertiesGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 8px;
-  margin-bottom: 16px;
-}
-
-.Card-property {
-  overflow-wrap: break-word;
-  font-family: Roboto, sans-serif;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: .875rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  letter-spacing: .0178571429em;
-  opacity: .6;
-  margin: 0;
-} */
 
 /** TABLE STYLES **/
 .Trashcan {
@@ -188,6 +103,7 @@ overflow-wrap: break-word;
   height: 24px;
   cursor: pointer;
   fill: #003661;
+  margin-left: 12px;
 }
 
 .Trashcan .Trashcan-open {
@@ -200,7 +116,7 @@ overflow-wrap: break-word;
   display: none;
 }
 
-.CookieManager-table {
+.LiveCookies-table {
   margin-bottom: 1rem;
   background-color: rgba(255, 255, 255, 0.9);
   width: 100%;
@@ -208,23 +124,26 @@ overflow-wrap: break-word;
   text-rendering: optimizespeed;
   -webkit-font-smoothing: antialiased;
   box-shadow: 0 1px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
+  font-size: 1.1em;
 }
-.CookieManager-table tr {
+
+.LiveCookies-table tr {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
-.CookieManager-table th,
-.CookieManager-table td {
+.LiveCookies-table th,
+.LiveCookies-table td {
   padding: 1rem;
   align-self: center;
   text-align: left;
 }
-.CookieManager-table thead th {
+.LiveCookies-table thead th {
   vertical-align: bottom;
   border-bottom: 1px solid #EEF0FC;
   text-transform: capitalize;
+  font-size: 1.25em;
 }
-.CookieManager-table tr:nth-of-type(even) {
+.LiveCookies-table tr:nth-of-type(even) {
   background-color:rgba(228, 232, 250, .25)
 }
 

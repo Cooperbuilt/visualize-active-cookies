@@ -1,8 +1,8 @@
 {
-  "name": "Cookie Manager",
+  "name": "Live Cookies",
   "version": "1.0",
   "author": "Evan Cooper",
-  "description": "An extension to manage your browser cookies!",
+  "description": "An extension see your cookies, live!",
   "permissions": [
     "cookies",
     "storage",
@@ -18,7 +18,7 @@
     "128": "icon.png"
   },
   "browser_action": {
-    "default_title": "Cookie Cleaner",
+    "default_title": "Live Cookies",
     "default_icon": "icon.png",
     "default_popup": "index.html"
   },

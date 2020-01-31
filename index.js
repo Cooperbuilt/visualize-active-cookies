@@ -13,7 +13,7 @@ if (document.readyState === 'loading') {
 }
 
 function afterDOMLoaded() {
-  var display_Cookies = document.getElementById("open_cookie_manager");
+  var display_Cookies = document.getElementById("open_live_cookies");
 
   display_Cookies.addEventListener('click', function () {
     openCookieManager();

@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Cookie Cleaner - Chrome Extension</title>
+  <head>
+    <title>Live Cookies - Chrome Extension</title>
     <style>
-        body {
-            min-width: 420px;
-            min-height: 10%;
-            color: #172B4D;
-        }
+      body {
+        height: 8em;
+        width: 20em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Roboto, sans-serif;
+        color: #003661;
+        border-radius: 25px;
+      }
+      .LiveCookiesPopup {
+        height: 100%;
+      }
+      .LiveCookiesPopup-button {
+        padding: 8px 12px;
+        border-radius: 5%;
+        background: #003661;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1.25em;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+      }
+      .LiveCookiesPopup-button:hover {
+        background-color: #0465b5;
+      }
+      .LiveCookiesPopup-title {
+          text-align: center;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div class="CookieManager">
-        <h2 class="CookieManager-title">Cookie Manager</h2>
-        <button class="CookieManager-button" id="open_cookie_manager">Open Cookie Manager</button>
+  <body id="LiveCookiesPopup-body">
+    <div class="LiveCookiesPopup">
+      <h2 class="LiveCookiesPopup-title">Live Cookies</h2>
+      <button class="LiveCookiesPopup-button" id="open_live_cookies">
+        Open Live Cookies
+      </button>
     </div>
     <script src="index.js"></script>
-</body>
-
+  </body>
 </html>
