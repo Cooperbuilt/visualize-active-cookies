@@ -72,7 +72,7 @@ function fadeElement(element) {
 }
 
 const updateCookieCountHTML = count => {
-  const currentUrlElement = document.querySelector(".CookieManager-count");
+  const currentUrlElement = document.querySelector(".LiveCookies-count");
   currentUrlElement.innerHTML = count;
 };
 
@@ -161,7 +161,7 @@ const createListItem = cookie => {
 };
 
 const createCookieList = cookies => {
-  const cookieList = document.querySelector(".CookieManager-cookieList");
+  const cookieList = document.querySelector(".LiveCookies-cookieList");
   const cookieHTML = generateCookieHtml(cookies);
   cookieList.innerHTML = cookieHTML.join("");
   setCookieRemovalHandlers();
@@ -203,7 +203,7 @@ function removeCookie(cookie) {
 }
 
 function clearAllCookies() {
-  const cookieList = document.querySelector(".CookieManager-cookieList");
+  const cookieList = document.querySelector(".LiveCookies-cookieList");
   cookieList.innerHTML = "";
   chrome.cookies.getAll({}, function(cookies) {
     for (var i in cookies) {
@@ -216,7 +216,7 @@ function clearAllCookies() {
 
 function copyCookies() {
   const cookies = Array.from(
-    document.querySelectorAll(".CookieManager-table-row")
+    document.querySelectorAll(".LiveCookies-table-row")
   );
   const cookieObject = cookies.reduce((newObject, currentCookie) => {
     const cookieName = currentCookie.querySelector("[data-id-name]").innerHTML;
@@ -239,7 +239,7 @@ function copyCookies() {
     if (result.state == "granted" || result.state == "prompt") {
       navigator.clipboard.writeText(JSON.stringify(cookieObject)).then(
         function() {
-          const checkMark = document.querySelector(".CookieManager-Check");
+          const checkMark = document.querySelector(".LiveCookies-Check");
           fadeElement(checkMark);
           /* clipboard successfully set */
         },
@@ -250,7 +250,7 @@ function copyCookies() {
 }
 
 function setCookieRemovalHandlers() {
-  const rows = Array.from(document.querySelectorAll(".CookieManager-table-row"));
+  const rows = Array.from(document.querySelectorAll(".LiveCookies-table-row"));
 
   rows.forEach(row => {
     const icon = row.querySelector("[data-id-delete]");
