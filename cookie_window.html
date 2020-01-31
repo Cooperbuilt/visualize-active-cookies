@@ -24,7 +24,20 @@
       <span class="CookieManager-Check"></span>
     </button>
   </div>
-  <ul class="CookieManager-cookieList"></ul>
+  <!-- <ul class="CookieManager-cookieList"></ul> -->
+  <table class="CookieManager-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+        <th>Domain</th>
+        <th>Expiration</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody class="CookieManager-cookieList"></tbody>
+  </table>
+
   <script src="background.js"></script>
 </body>
 

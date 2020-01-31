@@ -90,9 +90,13 @@ const createListItem = cookie => {
   var url =
     "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
   return `
-  <li class="Card">
-  <div class="Card-topWrapper">
-    <div class="Card-iconWrapper" data-id-delete>
+    <tr class="CookieManager-table-row">
+      <td data-id-name >${cookie.name}</td>
+      <td data-id-value>${cookie.value}</td>
+      <td data-id-domain>${cookie.domain}</td>
+      <td data-id-date>${date}</td>
+      <td class="hidden" data-id-url>${url}</td>
+      <td data-id-delete>
       <svg
         class="Trashcan"
         xmlns="http://www.w3.org/2000/svg"
@@ -154,29 +158,35 @@ const createListItem = cookie => {
           ></path>
         </g>
       </svg>
-    </div>
-    <div class="Card-titleBlock">
-      <p class="Card-cookieName" data-id-name >${cookie.name}</p>
-      <p class="Card-cookieValue" data-id-value >${cookie.value}</p>
-    </div>
-  </div>
-  <div aria-role="divider" class="Card-divider" />
-  <div class="Card-propertiesGrid">
-    <div>
-      <p>domain</p>
-      <p class="Card-property" data-id-domain>${cookie.domain}</p>
-    </div>
-     <div >
-      <p>expiration</p>
-      <p class="Card-property" data-id-date>${date}</p>
-    </div>
-     <div>
-      <p>url</p>
-      <p class="Card-property" data-id-url>${url}</p>
-    </div>
- </div>
-</li>
-  `;
+    </td>
+    </tr>
+    `
+  //   return `
+  //   <li class="Card">
+  //   <div class="Card-topWrapper">
+
+  //     <div class="Card-titleBlock">
+  //       <p class="Card-cookieName" data-id-name >${cookie.name}</p>
+  //       <p class="Card-cookieValue" data-id-value >${cookie.value}</p>
+  //     </div>
+  //   </div>
+  //   <div aria-role="divider" class="Card-divider" />
+  //   <div class="Card-propertiesGrid">
+  //     <div>
+  //       <p>domain</p>
+  //       <p class="Card-property" data-id-domain>${cookie.domain}</p>
+  //     </div>
+  //      <div >
+  //       <p>expiration</p>
+  //       <p class="Card-property" data-id-date>${date}</p>
+  //     </div>
+  //      <div>
+  //       <p>url</p>
+  //       <p class="Card-property" data-id-url>${url}</p>
+  //     </div>
+  //  </div>
+  // </li>
+  //   `;
 };
 
 const createCookieList = cookies => {
@@ -231,7 +241,7 @@ function clearAllCookies() {
 /** **************** COOKIE COPYING FUNCTIONS ************************ */
 
 function copyCookies() {
-  const cookies = Array.from(document.querySelectorAll(".Card"));
+  const cookies = Array.from(document.querySelectorAll(".CookieManager-table-row"));
   const cookieObject = cookies.reduce((newObject, currentCookie) => {
     const cookieName = currentCookie.querySelector("[data-id-name]").innerHTML;
     const cookieValue = currentCookie.querySelector("[data-id-value]").innerHTML;
